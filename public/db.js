@@ -38,10 +38,10 @@ function checkDatabase() {
         body: JSON.stringify(getAll.result),
         headers: {
           Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       })
-        .then(response => response.json())
+        .then((response) => response.json())
         .then(() => {
           // delete records if successful
           const transaction = db.transaction(["pending"], "readwrite");
@@ -50,11 +50,6 @@ function checkDatabase() {
         });
     }
   };
-}
-function deletePending() {
-  const transaction = db.transaction(["pending"], "readwrite");
-  const store = transaction.objectStore("pending");
-  store.clear();
 }
 
 // listen for app coming back online
