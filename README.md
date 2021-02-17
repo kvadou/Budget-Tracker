@@ -1,6 +1,6 @@
 <h1 align="center">PWA Homework: Budget Tracker</h1>
 
-## Workout_Tracker
+## Budget_Tracker
 
 - [Description](#description)
 - [Installation](#installation)
@@ -10,9 +10,7 @@
 
 ## Description
 
-This is a workout tracker application built using Mongo database schema and handle routes with Express.
-
-The application allows a user to view, create and track daily workouts. The user is able to log multiple exercises in a workout on a given day and also able to track the name, type, weight, sets, reps, and duration of exercise.
+This is a budget tracker application that will allow a user to add expenses and deposits to their budget with our without internet connection. If a transaction is added offline, it will populate in the ledger when brought back online.
 
 The application was deployed with Heroku and MongoDB Atlas
 

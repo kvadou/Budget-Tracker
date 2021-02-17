@@ -2,8 +2,8 @@ let transactions = [];
 let myChart;
 
 fetch("/api/transaction")
-  .then((response) => response.json())
-  .then((data) => {
+  .then(response => response.json())
+  .then(data => {
     // save db data on global variable
     transactions = data;
     populateTotal();
@@ -25,7 +25,7 @@ function populateTable() {
   const tbody = document.querySelector("#tbody");
   tbody.innerHTML = "";
 
-  transactions.forEach((transaction) => {
+  transactions.forEach(transaction => {
     // create and populate a table row
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -43,13 +43,13 @@ function populateChart() {
   let sum = 0;
 
   // create date labels for chart
-  const labels = reversed.map((t) => {
+  const labels = reversed.map(t => {
     const date = new Date(t.date);
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   });
 
   // create incremental values for chart
-  const data = reversed.map((t) => {
+  const data = reversed.map(t => {
     sum += parseInt(t.value);
     return sum;
   });
@@ -70,10 +70,10 @@ function populateChart() {
           label: "Total Over Time",
           fill: true,
           backgroundColor: "#6666ff",
-          data,
-        },
-      ],
-    },
+          data
+        }
+      ]
+    }
   });
 }
 
@@ -94,7 +94,7 @@ function sendTransaction(isAdding) {
   const transaction = {
     name: nameEl.value,
     value: amountEl.value,
-    date: new Date().toISOString(),
+    date: new Date().toISOString()
   };
 
   // if subtracting funds, convert amount to negative number
@@ -116,11 +116,11 @@ function sendTransaction(isAdding) {
     body: JSON.stringify(transaction),
     headers: {
       Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
+      "Content-Type": "application/json"
+    }
   })
-    .then((response) => response.json())
-    .then((data) => {
+    .then(response => response.json())
+    .then(data => {
       if (data.errors) {
         errorEl.textContent = "Missing Information";
       } else {
@@ -129,7 +129,7 @@ function sendTransaction(isAdding) {
         amountEl.value = "";
       }
     })
-    .catch((err) => {
+    .catch(err => {
       // fetch failed, so save in indexed db
       saveRecord(transaction);
 
@@ -139,12 +139,17 @@ function sendTransaction(isAdding) {
     });
 }
 
-document.querySelector("#add-btn").addEventListener("click", function (event) {
+document.querySelector("#add-btn").addEventListener("click", function(event) {
   event.preventDefault();
   sendTransaction(true);
 });
 
-document.querySelector("#sub-btn").addEventListener("click", function (event) {
+document.querySelector("#sub-btn").addEventListener("click", function(event) {
   event.preventDefault();
   sendTransaction(false);
+});
+
+document.querySelector("#del-btn").addEventListener("click", function(event) {
+  event.preventDefault();
+  deletePending();
 });
