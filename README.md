@@ -16,29 +16,19 @@ The application was deployed with Heroku and MongoDB Atlas
 
 Screenshot of the completed output:
 
-![Index Screenshot](./src/index.png)
-
-![Dashboard Screenshot](./src/dashboard.png)
+![Index Screenshot](./src/budget.png)
 
 ## Installation
 
-`npm init -y`
-
-`npm i express`
-
-`npm i morgan`
-
-`npm i mongoose`
-
-`npm i dotenv`
+`npm i`
 
 ## Usage
 
 Run the following command at the root of the directory and you will be able to view the local website at http://localhost:3000/:
 
-`node server.js`
+`npm run start`
 
-The project was deployed on heroku and can viewed at this website: https://w0rk0ut-tracker.herokuapp.com/
+The project was deployed on heroku and can viewed at this website: https://budget-tr4cker.herokuapp.com/
 
 ## Contributing
 
